@@ -1,0 +1,28 @@
+[package]
+name = "aqueduct"
+version = "0.1.0"
+description = ""
+edition = "2021"
+rust-version = "1.56"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "aqueduct"
+
+[features]
+init-if-needed = []
+no-entrypoint = []
+no-idl = []
+cpi = ["no-entrypoint"]
+default = []
+
+[profile.release]
+overflow-checks = true
+
+[dependencies]
+anchor-lang = { version="0.25.0", features = ["init-if-needed"] }
+anchor-spl = "0.25.0"
+solana-program = "1.9.15"
+spl-token = { version = "3.3.0", features = ["no-entrypoint"] }
+uint = "=0.9.1"
+whirlpool = { path = "../../../whirlpools/programs/whirlpool", features = ["cpi"] }

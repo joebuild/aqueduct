@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Transactions" ALTER COLUMN "token_a_amount" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "token_b_amount" SET DATA TYPE DOUBLE PRECISION;

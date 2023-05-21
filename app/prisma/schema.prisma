@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:gmv1GVZ_pjd6phm7tcy@aqueduct-instance-1.cuxr6bplq9tx.us-east-1.rds.amazonaws.com:5432/aqueduct?schema=public"
+}
+
+model Transactions {
+  tx_id             String
+  inner_swap_index  Int
+  slot              Int
+  timestamp         Int
+  s3_source_file    String
+  token_a_mint      String
+  token_a_amount    Float
+  token_b_mint      String
+  token_b_amount    Float
+  price_a_per_b     Float
+  price_b_per_a     Float
+  volume_usd        Float?
+
+  @@id([tx_id, inner_swap_index])
+  @@unique([tx_id, inner_swap_index])
+}
+
+model Prices {
+  epoch_minute  Int
+  mint          String
+  price         Float
+
+  @@id([epoch_minute, mint])
+  @@unique([epoch_minute, mint])
+}
+
+model Whirlpools {
+  address               String @id @unique
+  token_a               String
+  token_b               String
+  fee                   Float
+  total_liquidity_usd   Float?
+  approved              Boolean?
+}
+
+model Tokens {
+  mint                      String @id @unique
+  decimals                  Int
+  approved_to_trade         Boolean?
+  max_allocation_percent    Float?
+  symbol                    String?
+  name                      String?
+}
+
+model Openbooks {
+  address               String @id @unique
+  quote_mint            String
+  base_mint             String
+  quote_symbol          String
+  base_symbol           String
+}

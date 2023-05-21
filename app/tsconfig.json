@@ -1,0 +1,33 @@
+{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "es2019"
+    ],
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "importsNotUsedAsValues": "error",
+    "baseUrl": "./",
+    "paths": {
+      "$icons/*": ["src/icons/*"],
+      "$idl/*": ["src/idl/*"],
+      "$lib":["src/lib"],
+      "$lib/*":["src/lib/*"],
+      "$src/*": ["src/*"],
+      "$stores/*": ["src/stores/*"],
+      "$utils/*": ["src/utils/*"]
+    }
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.svelte"
+  ]
+}
